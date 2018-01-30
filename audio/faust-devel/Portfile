@@ -46,7 +46,15 @@ depends_lib             port:clang-${llvm_version} \
                         port:llvm-${llvm_version} \
                         path:lib/libssl.dylib:openssl
 
+patchfiles              patch-compiler-Makefile.unix.diff
+
 post-patch {
+    if [string match *clang* ${configure.compiler}] {
+        set stdlib_flag -stdlib=${configure.cxx_stdlib}
+    } else {
+        set stdlib_flag {}
+    }
+    reinplace "s|@STDLIB_FLAG@|${stdlib_flag}|g" ${worksrcpath}/compiler/Makefile.unix
     reinplace "s|/usr/local/|/usr/./local/|g" \
         ${worksrcpath}/tools/faust2appls/faust2faustvst
     reinplace "s|/usr/local|${prefix}|g" \
@@ -57,8 +65,8 @@ post-patch {
     fs-traverse f ${worksrcpath} {
         switch [file rootname [file tail ${f}]] {
             Makefile {
-                reinplace "s|/usr/local|${prefix}|g" ${f}
-                reinplace "s|/opt/local|${prefix}|g" ${f}
+                reinplace -q "s|/usr/local|${prefix}|g" ${f}
+                reinplace -q "s|/opt/local|${prefix}|g" ${f}
             }
         }
     }
@@ -71,7 +79,7 @@ use_configure           no
 variant universal {}
 
 build.args-append       ARCHFLAGS="[get_canonical_archflags cxx]" \
-                        CXX="${configure.cxx} [get_canonical_archflags cxx]"
+                        CXX="${configure.cxx} -std=gnu++11 [get_canonical_archflags cxx]"
 build.target            world
 
 post-destroot {
