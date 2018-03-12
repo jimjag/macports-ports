@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.26
-perl5.setup         HTTP-XSCookies 0.000017 ../../authors/id/G/GO/GONZUS
+perl5.setup         HTTP-XSCookies 0.000021 ../../authors/id/G/GO/GONZUS
 license             MIT
 maintainers         {devans @dbevans} openmaintainer
 description         HTTP::XSCookies - Fast XS cookie mangling for Perl
@@ -12,9 +12,9 @@ long_description    ${description}
 
 platforms           darwin
 
-checksums           rmd160  c1ae42ec06bf00c06e9dcadf188ce76aabcadeae \
-                    sha256  802aec274b7b0c5cdc9229b11f2f6f3e269ab5adc8a027a2d209f025fd19e80f \
-                    size    66894
+checksums           rmd160  7d9480dbe1698632b58a63aacb4aceeffe9ea7df \
+                    sha256  74e637d6f682f3025fbdf825f51c5be892a8458b5c6ae08c44a73cd8b658258a \
+                    size    73032
 
 if {${perl5.major} != ""} {
     depends_build-append \
