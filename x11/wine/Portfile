@@ -237,6 +237,27 @@ compiler.blacklist-append   {clang < 500}
 # FSF GCC cannot compile code using Apple's "blocks" language extensions
 compiler.blacklist-append   macports-gcc-*
 
+if {[variant_isset universal]} {
+    # wine for 64-bit requires clang >= 3.8
+    compiler.blacklist-append   {clang < 800} \
+                                gcc-4.0 \
+                                gcc-4.2 \
+                                apple-gcc-4.2 \
+                                macports-clang-3.3 \
+                                macports-clang-3.4 \
+                                macports-clang-3.5 \
+                                macports-clang-3.6 \
+                                macports-clang-3.7
+    compiler.fallback-append    macports-clang-5.0 \
+                                macports-clang-3.8
+
+    if {${os.platform} eq "darwin" && [vercmp $macosx_version 10.6] <= 0} {
+        # clang-5.0 on Mac OS X 10.6 emits objects that cannot be read by cctools from Xcode.
+        # /usr/bin/ranlib: object: libwine_port.a(mbtowc.o) malformed object (unknown load command 2)
+        compiler.blacklist-append   macports-clang-5.0
+    }
+}
+
 platform darwin {
     # On macOS, Core Text is used instead of fontconfig since Wine 1.5.10
     depends_lib-delete          port:fontconfig
