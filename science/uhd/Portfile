@@ -35,7 +35,7 @@ Provides the release version, which is typically updated every month or so.
     # overload the github livecheck regex to look for versions that
     # are just numbers and '_', no letters (e.g., "3.7.3_rc2").
 
-    livecheck.regex archive/[join ${github.tag_prefix} ""](\[0-9_\]+)${extract.suffix}
+    github.livecheck.regex  {([0-9_]+)}
 
 }
 
@@ -52,10 +52,10 @@ Provides the UHD GIT maint or master branch, depending on which is more advanced
                     sha256 764f016e17e2cc2305b2bf61646cba92be6284ca9ddd663e2fd4f857b6b7bdf7 \
                     size   9289076
 
-    # overload the github livecheck URL with the maint branch,
-    # when it is more advanced; comment out for master.
+    # overload the github livecheck branch.
+    # when master is more advanced, comment this out.
 
-    livecheck.url   ${github.homepage}/commits/maint.atom
+    github.livecheck.branch maint
 
     # set the version override string
 
