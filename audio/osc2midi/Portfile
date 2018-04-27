@@ -25,5 +25,7 @@ long_description        This is a flexible OSC to JACK MIDI (and back) Bridge \
 platforms               darwin
 license                 GPL-3
 
+depends_build-append    port:pkgconfig
+
 depends_lib-append      port:jack \
                         port:liblo
