@@ -8,8 +8,8 @@ PortGroup           gobject_introspection 1.0
 name                gegl-devel
 conflicts           gegl-0.4
 set git_name        gegl
-set git_commit      03956f66fd8c03adb226179c13844ad3b73010d5
-set git_date        20180430
+set git_commit      2896800b5e7d0c656710c70fdea57098032f3ccc
+set git_date        20180506
 version             0.4.1-${git_date}
 license             {GPL-3+ LGPL-3+}
 categories          graphics
@@ -28,9 +28,9 @@ master_sites        https://git.gnome.org/browse/${git_name}/snapshot/
 
 distname            ${git_name}-${git_commit}
 
-checksums           rmd160  b5ea8aa9d2a8c0ec3886b5e5ffdd4f42e56f3273 \
-                    sha256  662bb3cc7d742de8bcf7f684d1fb88eda8b75916fa152e46f7e392e714e326ef \
-                    size    24911783
+checksums           rmd160  68a1a2a697362e814da8727f2c4bae8634bc5c17 \
+                    sha256  6c32e7e461318212f4bacb2145f1b9ae920490d6b46a8b3b57bfd06418cbcf24 \
+                    size    24913799
 
 depends_build       port:pkgconfig \
                     port:w3m \
@@ -57,11 +57,6 @@ depends_lib         port:babl-devel \
                     port:webp
 
 patchfiles          patch-configure.ac.diff
-
-# disable external operation ff-save for now
-# AVFMT_RAWPICTURE removed in ffmpeg-devel
-# https://trac.macports.org/ticket/55389
-patchfiles-append  disable-broken-ffsave.patch
 
 post-patch {
     # http://trac.macports.org/ticket/35148
