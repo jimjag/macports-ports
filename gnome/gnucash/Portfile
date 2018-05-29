@@ -38,6 +38,7 @@ worksrcdir        ${name}-${version}
 checksums         rmd160  336e204c9d19eca2ebe3862b974204e62d1db4de \
                   sha256  a1ef66cec3b8b74b7b8bfe791ff12456796a69cc004427e8d9205b6872bdd261
 
+patchfiles        case-sensitive.patch
 
 post-patch {
     # gnc-fq-dump needs to be patched to use MacPorts perl.
@@ -121,12 +122,12 @@ post-activate {
 }
 
 if {$subport == $name} {
-    livecheck.regex "/${name} .*/(\[0-9\]+\\.\[0-9\]*\[02468\]\\.\[0-9\]+)/"
+    livecheck.regex "/${name} .*/(\[0-9\]+\\.\[0-9\]*\[0-9\])/"
 }
 
 # There currently isn't a separate beta release.
 subport gnucash-devel {
-    livecheck.regex "/${name} .*/(\[0-9\]+\\.\[0-9\]*\[0-9\]\\.\[0-9\]+)/"
+    livecheck.regex "/${name} .*/(\[0-9\]+\\.\[0-9\]*\[0-9\])/"
 }
 
 notes "gnucash DBI backend support requires the libdbi-drivers port to be built with support for the desired databases. sqlite3 is available by default; for MySQL or PostgreSQL support, ensure that the corresponding variant is selected for libdbi-drivers."
