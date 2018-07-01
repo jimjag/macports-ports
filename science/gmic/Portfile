@@ -5,7 +5,7 @@ PortGroup           cxx11 1.1
 PortGroup           qt5 1.0
 
 name                gmic
-version             2.3.0
+version             2.3.2
 revision            1
 license             CeCILL
 categories          science
@@ -31,12 +31,9 @@ use_parallel_build  no
 
 distfiles           ${name}_${version}${extract.suffix}
 
-# stealth update
-dist_subdir         ${name}/${version}_${revision}
-
-checksums           rmd160  8a8d8fe9f4b44e6a4ae46aabb9b03efb8bc3d554 \
-                    sha256  57fc98ccc4f2720fb54d1aef6c2e5a2125894f8ae46827b0c644ca9ba066653f \
-                    size    3675216
+checksums           rmd160  6485769afb83d617013fa863ba1df37cbef1f1ef \
+                    sha256  160ef2fff116eedf56ea4635762a347f499761034cc21f0f16d1baea20c4e9ec \
+                    size    3690248
 
 depends_build-append \
                     port:pkgconfig
@@ -69,16 +66,16 @@ post-configure {
         ${worksrcpath}/src/Makefile
 
     #cli lib gimp krita gmic_qt libc zart
-    set targets {cli lib gimp libc}
+    set gmic_targets {cli lib gimp libc}
 
-    reinplace "s|%TARGETS%|${targets}|" \
+    reinplace "s|%TARGETS%|${gmic_targets}|" \
         ${worksrcpath}/src/Makefile
 }
 
 post-destroot {
     xinstall -m 0644 ${worksrcpath}/src/libgmic.a  ${destroot}${prefix}/lib
     xinstall -m 0644 ${worksrcpath}/src/libcgmic.a ${destroot}${prefix}/lib
-    xinstall -m 0644 ${worksrcpath}/gmic-qt/gmic_gimp_qt.app/Contents/MacOS/gmic_gimp_qt \
+    xinstall -m 0755 ${worksrcpath}/gmic-qt/gmic_gimp_qt.app/Contents/MacOS/gmic_gimp_qt \
                          ${destroot}${prefix}/lib/gimp/2.0/plug-ins
 }
 

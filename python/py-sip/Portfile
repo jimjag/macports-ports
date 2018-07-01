@@ -22,6 +22,11 @@ homepage            https://www.riverbankcomputing.com/software/sip/intro
 
 version             4.19.8
 
+# bumped the epoch to revert from 4.19.10 to 4.19.8. The former caused
+# configuration errors in py*-qscitilla-qt5 and py*-pyqt4, and
+# possibly others. See also: https://trac.macports.org/ticket/56746 .
+epoch               1
+
 # from siplib/sip.h.in:
 #
 # Define the current API version number.  SIP must handle modules with
@@ -31,7 +36,7 @@ version             4.19.8
 # removed or the order changed then the major number must be
 # incremented and the minor number set to 0.
 #
-# SIP 4.19.8 provides SIP API 12.4
+# SIP 4.19.[8-10] provides SIP API 12.4
 # SIP 4.19.[4-7] provides SIP API 12.3
 # SIP 4.19.3 provides SIP API 12.2
 # SIP 4.19.[1-2] provides SIP API 12.1

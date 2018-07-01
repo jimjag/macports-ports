@@ -4,7 +4,11 @@ PortSystem          1.0
 PortGroup           python 1.0
 PortGroup           github 1.0
 
-github.setup        mesonbuild meson 0.46.0
+# we need a newer version for the sake of fixing a bug with RPATH handling
+# https://github.com/mesonbuild/meson/pull/3691
+github.setup        mesonbuild meson 87871e7b95d4cc89627971f316bdeffebde048e5
+# github.tarball_from releases
+version             0.46.1
 revision            1
 license             Apache-2
 categories          devel python
@@ -21,11 +25,9 @@ long_description    Meson  is  a  build system designed to optimize programmer p
                     Valgrind,  CCache  and  the like. It is both extremely fast, and, even more importantly, \
                     as user friendly as possible.
 
-github.tarball_from releases
-
-checksums           rmd160  98075de5e74ed83480f93e472c25cd6515156eb8 \
-                    sha256  b7df91b01a358a8facdbfa33596a47cda38a760435ab55e1985c0bff06a9cbf0 \
-                    size    1200001
+checksums           rmd160  b9a5011595c2bc747fd0c09d5c3937a33ecd77f7 \
+                    sha256  efe087b9fda52742fbb3db459f2ba6d23da15fa9911e20749c9ec20b30871be8 \
+                    size    1798369
 
 # as of verison 0.45.0,requires python 3.5 or better
 
@@ -38,8 +40,6 @@ depends_build-append \
 
 depends_lib-append \
                     port:ninja
-
-patchfiles          depfixer.patch
 
 post-destroot {
     set python_prefix ${frameworks_dir}/Python.framework/Versions/${python.branch}
