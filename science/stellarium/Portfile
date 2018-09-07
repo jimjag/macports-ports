@@ -37,11 +37,11 @@ if {${name} eq ${subport}} {
         This port is kept up with the Stellarium GIT master branch, which is typically updated daily to weekly.
 
     conflicts       stellarium stellarium-qt4
-    github.setup    Stellarium stellarium c29fc09c092ee71fe03110628313dc8a5023f06e
-    version         20180826
-    checksums       rmd160 f238028c9f019ece7db9a9bbde846373991721eb \
-                    sha256 93401675e2763aba246949941506ef753bc2a30372bb231c1b7031e125d98166 \
-                    size   265879932
+    github.setup    Stellarium stellarium 5c5c060026d9cd32e3fc8d5785f62662ae70c046
+    version         20180905
+    checksums       rmd160 1d44fa099d9ba2c10f621f71200f06261f404f8b \
+                    sha256 fa5ec8967bb37b64844b3317a15662b79b22e1b8c57863cf29fab6cceed74d47 \
+                    size   265939862
 
 }
 

@@ -47,11 +47,11 @@ if {${subport} eq ${name}} {
 
 } else {
 
-    github.setup    secdev scapy b5a810c935760cf96251b8491886b7d47eb10418
-    version         20180816
-    checksums       rmd160 e8f33848097799cb112855d8961e33869b55a82d\
-                    sha256 7b72671c7d76003125ad31852d7b5ab68f4364d2a771030898d964e2afb2faa1\
-                    size   3265601
+    github.setup    secdev scapy 80fefc69072c270f649fdec09a53cc7ccfbed5f0
+    version         20180904
+    checksums       rmd160 a80e4510f75fb3d2ecbc5e1b1176bf8e3783de13\
+                    sha256 d6cf50557302f37bdc7847c5a38fceb70bc940b85b28a0231e08eb3792fc900a\
+                    size   3265950
 
     long_description    ${long_description} \
         This port is kept up with the ${name} GIT 'master' branch, is typically updated weekly to monthly.

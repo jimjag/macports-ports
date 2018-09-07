@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 
 name                py-dask
-version             0.18.2
+version             0.19.1
 revision            0
 categories-append   devel
 platforms           darwin
@@ -31,9 +31,9 @@ master_sites        pypi:[string index ${python.rootname} 0]/${python.rootname}
 
 distname            ${python.rootname}-${version}
 
-checksums           rmd160  6246ec40b0db5572a1b6705305150b021fec3cc5 \
-                    sha256  8fba559911788010ecedf58e540004d56d09f7829a1400dd72b74ffedafafabc \
-                    size    2324709
+checksums           rmd160  6e501a8d72d5e2cf4e3f4a74707c01761d6322fb \
+                    sha256  aae1f237870c01773bca5a75289f10166b84e13b9e966d8431e945f1f1febb99 \
+                    size    2346571
 
 if {${name} ne ${subport}} {
     depends_build-append \
