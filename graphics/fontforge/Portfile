@@ -37,20 +37,20 @@ if {${os.platform} eq "darwin" && ${os.major} > 9} {
 
 depends_build       port:pkgconfig
 
-depends_lib         port:freetype \
+depends_lib         path:lib/pkgconfig/cairo.pc:cairo \
+                    port:freetype \
                     port:gettext \
                     port:giflib \
                     port:jpeg \
                     port:libiconv \
                     port:libpng \
+                    port:libspiro \
                     port:libuninameslist \
                     port:libxml2 \
+                    path:lib/pkgconfig/pango.pc:pango \
+                    port:potrace \
                     port:tiff \
-                    port:zlib \
-                    port:libspiro \
-                    port:pango \
-                    port:cairo \
-                    port:potrace
+                    port:zlib
 
 configure.args      --mandir=${prefix}/share/man \
                     --disable-python-scripting \
@@ -80,19 +80,17 @@ post-destroot {
 }
 
 notes "
-*******
-*******   macOS app bundles are available here:
-*******   https://dl.bintray.com/fontforge/fontforge/
-*******
+macOS app bundles are available here:
+
+    https://dl.bintray.com/fontforge/fontforge/
 "
 
 if {[variant_isset gui]} {
     notes-append "
-*******
-*******   To make the GUI work, you have to open a font when launching
-*******   fontforge for the first time
-*******   e.g.: ${prefix}/bin/fontforge some-font-file.otf
-*******
+To make the GUI work, you have to open a font when launching fontforge for the\
+first time, e.g.:
+
+    ${prefix}/bin/fontforge some-font-file.otf
 "
 }
 
