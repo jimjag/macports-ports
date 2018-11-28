@@ -6,7 +6,7 @@ name                    gpsd
 
 license                 BSD
 categories              net
-maintainers             {ryandesign @ryandesign} {michaelld @michaelld} \
+maintainers             {michaelld @michaelld} \
                         {fwright.net:fw @fhgwright} openmaintainer
 platforms               darwin
 
@@ -39,7 +39,7 @@ if {${subport} eq ${name}} {
     # This due to a recurring problem clobbering the 'gps' symlinks in the
     # contrib/ and devtools/.  Since this doesn't affect the installed port,
     # these errors are left as is.  Note, however, that attempts to directly
-    # use Python programs in thsese subdirectories from the work directory
+    # use Python programs in these subdirectories from the work directory
     # may not work.
 
     patchfiles-append   patch-SConstruct.diff
@@ -55,11 +55,11 @@ if {${subport} eq ${name}} {
     # devel
     conflicts           gpsd
 
-    version             20181121
-    set commit          eb4dfe0e87b4010f3032a9947c9fd0b5b157f9bc
-    checksums           rmd160  c740f3713162c34883171729fa4a113e055eb286 \
-                        sha256  ee810aa1d6791a8cb239509e9cff7733e315c4c627b36917ad9835123109342d \
-                        size    10064973
+    version             20181126
+    set commit          513cab610322755a45143eac42eb53ceb08fca2d
+    checksums           rmd160  1b699eb333df171217c4c499468a6eff576e3ea6 \
+                        sha256  875c3283e6f4cc1061052d7bfdef891af566ac79af3b32de8b88330fc8d1921f \
+                        size    10067065
 
     master_sites        http://git.savannah.gnu.org/cgit/gpsd.git/snapshot
     distname            ${name}-${commit}
@@ -167,8 +167,8 @@ build.env-append        CC="${configure.cc} [get_canonical_archflags cc]" \
 test.run                yes
 test.cmd                ${build.cmd} -j${build.jobs}
 test.target             testregress
-set test.args           ${build.args}
-set test.env            ${build.env}
+test.args               {*}${build.args}
+test.env-append         {*}${build.env}
 if { [info exists ::env(WRITE_PAD)] } {
     test.env-append     WRITE_PAD=$::env(WRITE_PAD)
 } else {
@@ -205,33 +205,26 @@ variant qt description {Build Qt4 bindings} {
     test.env-append         PKG_CONFIG_PATH=${qt_pkg_config_dir}
     destroot.env-append     PKG_CONFIG_PATH=${qt_pkg_config_dir}
 
-    build.args-delete       qt=no
-    build.args-append       qt=yes
-    test.args-delete        qt=no
-    test.args-append        qt=yes
-    destroot.args-delete    qt=no
-    destroot.args-append    qt=yes
+    build.args-replace      qt=no           qt=yes
+    test.args-replace       qt=no           qt=yes
+    destroot.args-replace   qt=no           qt=yes
 }
 
 variant libusb \
 description {Include support for better USB device discovery} {
     depends_lib-append      port:libusb
-    build.args-delete       usb=no
-    build.args-append       usb=yes
-    test.args-delete        usb=no
-    test.args-append        usb=yes
-    destroot.args-delete    usb=no
-    destroot.args-append    usb=yes
+
+    build.args-replace      usb=no          usb=yes
+    test.args-replace       usb=no          usb=yes
+    destroot.args-replace   usb=no          usb=yes
 }
 
 variant dbus description {Include support for DBUS} {
     depends_lib-append      port:dbus-glib
-    build.args-delete       dbus_export=no
-    build.args-append       dbus_export=yes
-    test.args-delete        dbus_export=no
-    test.args-append        dbus_export=yes
-    destroot.args-delete    dbus_export=no
-    destroot.args-append    dbus_export=yes
+
+    build.args-replace      dbus_export=no  dbus_export=yes
+    test.args-replace       dbus_export=no  dbus_export=yes
+    destroot.args-replace   dbus_export=no  dbus_export=yes
 }
 
 variant xgps \
@@ -239,12 +232,10 @@ description {Include xgps/xgpsspeed X11 clients (dependency-intensive)} {
     depends_lib-append      port:py${pyver_no_dot}-cairo \
                             port:py${pyver_no_dot}-gobject3 \
                             port:gtk3
-    build.args-delete       xgps=no
-    build.args-append       xgps=yes
-    test.args-delete        xgps=no
-    test.args-append        xgps=yes
-    destroot.args-delete    xgps=no
-    destroot.args-append    xgps=yes
+
+    build.args-replace      xgps=no         xgps=yes
+    test.args-replace       xgps=no         xgps=yes
+    destroot.args-replace   xgps=no         xgps=yes
 }
 
 if {![variant_isset xgps]} {
