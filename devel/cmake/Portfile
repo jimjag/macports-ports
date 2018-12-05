@@ -73,10 +73,7 @@ if {${subport} eq ${name}} {
     use_bzip2       yes
     master_sites    https://gitlab.kitware.com/cmake/cmake/repository/archive${extract.suffix}?ref=${commit}&
     distname        ${name}-${commit}
-
-    post-extract {
-        move ${workpath}/${name}-${commit}-${commit} ${workpath}/${name}-${commit}
-    }
+    worksrcdir      ${name}-${commit}-${commit}
 
     conflicts       cmake
     long_description ${base_long_description} \
