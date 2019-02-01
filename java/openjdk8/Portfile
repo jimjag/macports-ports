@@ -9,6 +9,15 @@ revision         0
 set build        08
 set major        8
 
+subport openjdk8-openj9 {
+    version      8u202
+    revision     0
+
+    set build    08
+    set major    8
+    set openj9_version 0.12.0
+}
+
 subport openjdk10 {
     version      10.0.2
     revision     2
@@ -26,11 +35,12 @@ subport openjdk11 {
 }
 
 subport openjdk11-openj9 {
-    version      11.0.1
+    version      11.0.2
     revision     0
 
-    set build    13
+    set build    9
     set major    11
+    set openj9_version 0.12.0
 }
 
 categories       java devel
@@ -69,6 +79,16 @@ if {${subport} eq "openjdk8"} {
 
     configure.cxx_stdlib libstdc++
 
+} elseif {${subport} eq "openjdk8-openj9"} {
+    master_sites https://github.com/AdoptOpenJDK/openjdk${major}-binaries/releases/download/jdk${version}-b${build}/
+
+    checksums    rmd160  0a88e321ed6a14c1a7723379e2c3acaf29921ddd \
+                 sha256  a416609d4bb57b91e2851de41720877f4cb01f19aae44eacd99e024711d8b353 \
+                 size    114338285
+
+    distname     OpenJDK${major}U-jdk_x64_mac_openj9_${version}b${build}_openj9-${openj9_version}
+    worksrcdir   jdk${version}-b${build}
+
 } elseif {${subport} eq "openjdk10"} {
     master_sites https://download.java.net/java/GA/jdk${major}/${version}/19aef61b38124481863b1413dce1855f/${build}/
 
@@ -100,11 +120,11 @@ if {${subport} eq "openjdk8"} {
 } else {
     master_sites https://github.com/AdoptOpenJDK/openjdk${major}-binaries/releases/download/jdk-${version}%2B${build}/
 
-    checksums    rmd160  dbb5724e61f924d55cec365c90e2fcd021716b2d \
-                 sha256  c5e9b588b4ac5b0bd5b4edd69d59265d1199bb98af7ca3270e119b264ffb6e3f \
-                 size    180993478
+    checksums    rmd160  cbf6475cb9715303bbae726ab5353c27b8bf75d9 \
+                 sha256  0589fea4f9012299267dd3c533417a37540a3db61ae86f411bda67195b3636f4 \
+                 size    194718798
 
-    distname     OpenJDK${major}-jdk_x64_mac_openj9_${version}_${build}
+    distname     OpenJDK${major}U-jdk_x64_mac_openj9_${version}_${build}_openj9-${openj9_version}
     worksrcdir   jdk-${version}+${build}
 
     description  Open Java Development Kit ${major} (AdoptOpenJDK) with Eclipse OpenJ9 VM
