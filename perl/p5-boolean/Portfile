@@ -4,22 +4,21 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.26 5.28
-perl5.setup         Astro-Coord-ECI-TLE-Iridium 0.116
+perl5.setup         boolean 0.46 ../../authors/id/I/IN/INGY
 license             {Artistic-1 GPL}
 maintainers         {devans @dbevans} openmaintainer
-description         Astro::Coord::ECI::TLE::Iridium - Compute behavior of Iridium satellites
+description         boolean - Boolean support for Perl
 long_description    ${description}
 
 platforms           darwin
 
-checksums           rmd160  bff01699f606f7a77eb7f7e49552e743d0eb740c \
-                    sha256  1dfbe983f801e69395f9670eb1c73e12807840abb8300e12739710890361c754 \
-                    size    79875
+checksums           rmd160  ff7d09e17f7c627b587b666f8d665ea0e4c6b4fd \
+                    sha256  95c088085c3e83bf680fe6ce16d8264ec26310490f7d1680e416ea7a118f156a \
+                    size    15552
 
 if {${perl5.major} != ""} {
     depends_lib-append \
-                    port:p${perl5.major}-astro-satpass
+                    port:p${perl5.major}-json-maybexs
 
-    perl5.use_module_build
     supported_archs noarch
 }
