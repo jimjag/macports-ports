@@ -15,20 +15,20 @@ long_description    ${description}
 
 subport ${name} {
     conflicts           ${name}-devel
-    github.setup        macports macports-legacy-support 0.8 v
-    checksums           rmd160  aff8f7edacfcefa0996013f3cfd58c0f9323e403 \
-                        sha256  973d6cb6b816f069952681a7b393b221945788e6f760056247272f3da80a3813 \
-                        size    23580
+    github.setup        macports macports-legacy-support 0.9 v
+    checksums           rmd160  4f9dc8cee3bbbabf5d025270edff0039af2ca525 \
+                        sha256  37af545d422ff41ba7b79f045f794af36985f7b29e43af953199242cf442b64a \
+                        size    27205
 }
 
 subport ${name}-devel {
     conflicts           ${name}
-    github.setup        macports macports-legacy-support b7c6d3c472ae2f1e78b1124d6046c96af907e6a4
-    version             20190228
+    github.setup        macports macports-legacy-support 665b2e923ed17ba6172835589942378e5046a53a
+    version             20190302
     livecheck.type      none
-    checksums           rmd160  34977853c2a56fe2437091253315f05008fecff9 \
-                        sha256  684a192b11bed51959d98ceae0786ee58ca41f34b48727743433ae8924a1dd23 \
-                        size    26960
+    checksums           rmd160  4f9dc8cee3bbbabf5d025270edff0039af2ca525 \
+                        sha256  37af545d422ff41ba7b79f045f794af36985f7b29e43af953199242cf442b64a \
+                        size    27205
 }
 
 use_configure       no
