@@ -5,6 +5,7 @@ PortGroup           muniversal 1.0
 PortGroup           compiler_blacklist_versions 1.0
 PortGroup           cxx11 1.1
 PortGroup           gobject_introspection 1.0
+PortGroup           legacysupport 1.0
 
 name                gegl-devel
 conflicts           gegl-0.4
@@ -76,7 +77,9 @@ gobject_introspection yes
 
 # blacklist compilers that do not support C11 (redefinition of typedef 'GeglDownscale2x2Fun' in gegl-algorithms.h at line 51)
 # tweak gcc blacklisting for 10.5 ppc
-compiler.blacklist  *gcc-3.* *gcc-4.* {clang < 300}
+# version 0.4.14+ requires apple clang 700.0.72 (Xcode 7.0.0) to build new parallelization code
+# ../gegl/gegl-parallel.h:134:29: error: expected expression '[] (gint     i,'
+compiler.blacklist  *gcc-3.* *gcc-4.* {clang < 700}
 
 use_autoreconf      yes
 autoreconf.args     -fvi
@@ -86,6 +89,13 @@ configure.python    ${prefix}/bin/python2.7
 configure.args      --disable-docs \
                     --disable-silent-rules \
                     --without-sdl
+
+# at present, luajit does not build on PowerPC
+platform darwin powerpc {
+    depends_lib-delete port:luajit
+    depends_lib-delete port:lua
+    configure.args-append --without-lua
+}
 
 # use version specific binary suffix to avoid conflict with gegl, gegl-0.3
 
