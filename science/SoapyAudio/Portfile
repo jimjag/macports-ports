@@ -10,13 +10,13 @@ categories          science
 license             MIT
 maintainers         {@ra1nb0w irh.it:rainbow} {michaelld @michaelld} openmaintainer
 
-description         Soapy SDR module for RTL-SDR
+description         Soapy SDR plugin for Audio devices
 long_description    ${description}
 
-github.setup        pothosware SoapyRTLSDR 0.3.0 soapy-rtlsdr-
-checksums           rmd160  88bb56f7842b9ce4de9f32fe1df0545c543a6724 \
-                    sha256  5fe2841548af43011381ef3da3f75be134245ccc215c12b0fea7f900760ce98f \
-                    size    14389
+github.setup        pothosware SoapyAudio 0.1.0 soapy-audio-
+checksums           rmd160  d63f01e8ba4b7961642972a86e7c0c814996c3ed \
+                    sha256  6ee256f3c7595e1d1e09e6ced45f5871de7b8ef9c615951562667516bd9a2968 \
+                    size    90312
 revision            0
 
 depends_build-append \
@@ -24,7 +24,8 @@ depends_build-append \
 
 depends_lib-append \
     port:SoapySDR \
-    port:rtl-sdr
+    port:hamlib \
+    port:rtaudio
 
 configure.args-append \
     -DCMAKE_BUILD_TYPE=Release

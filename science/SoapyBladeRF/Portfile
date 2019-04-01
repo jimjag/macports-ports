@@ -7,16 +7,16 @@ PortGroup           cxx11 1.1
 
 platforms           darwin macosx
 categories          science
-license             MIT
+license             LGPL-2.1
 maintainers         {@ra1nb0w irh.it:rainbow} {michaelld @michaelld} openmaintainer
 
-description         Soapy SDR module for RTL-SDR
+description         Soapy SDR plugin for Blade RF
 long_description    ${description}
 
-github.setup        pothosware SoapyRTLSDR 0.3.0 soapy-rtlsdr-
-checksums           rmd160  88bb56f7842b9ce4de9f32fe1df0545c543a6724 \
-                    sha256  5fe2841548af43011381ef3da3f75be134245ccc215c12b0fea7f900760ce98f \
-                    size    14389
+github.setup        pothosware SoapyBladeRF 0.4.1 soapy-bladerf-
+checksums           rmd160  763f4f31e8573ffd511e6e41464f9fa44bfd786e \
+                    sha256  6b90befee4372ff0011445c471c348b18f1998ae0d5b833c0026f088031c8a72 \
+                    size    29195
 revision            0
 
 depends_build-append \
@@ -24,7 +24,7 @@ depends_build-append \
 
 depends_lib-append \
     port:SoapySDR \
-    port:rtl-sdr
+    port:bladeRF
 
 configure.args-append \
     -DCMAKE_BUILD_TYPE=Release

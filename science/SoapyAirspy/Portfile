@@ -10,13 +10,13 @@ categories          science
 license             MIT
 maintainers         {@ra1nb0w irh.it:rainbow} {michaelld @michaelld} openmaintainer
 
-description         Soapy SDR module for RTL-SDR
+description         Soapy SDR plugin for Airspy
 long_description    ${description}
 
-github.setup        pothosware SoapyRTLSDR 0.3.0 soapy-rtlsdr-
-checksums           rmd160  88bb56f7842b9ce4de9f32fe1df0545c543a6724 \
-                    sha256  5fe2841548af43011381ef3da3f75be134245ccc215c12b0fea7f900760ce98f \
-                    size    14389
+github.setup        pothosware SoapyAirspy 0.1.2 soapy-airspy-
+checksums           rmd160  ec4fae8409fce242040b49f277cc00b49eaa2976 \
+                    sha256  bbbc235c3bc0a9864d6b194c61ddb0b6d1ab9e2d4702a1176f93516ce5357b80 \
+                    size    11544
 revision            0
 
 depends_build-append \
@@ -24,7 +24,7 @@ depends_build-append \
 
 depends_lib-append \
     port:SoapySDR \
-    port:rtl-sdr
+    port:airspy
 
 configure.args-append \
     -DCMAKE_BUILD_TYPE=Release

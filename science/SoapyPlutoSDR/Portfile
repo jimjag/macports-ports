@@ -7,16 +7,16 @@ PortGroup           cxx11 1.1
 
 platforms           darwin macosx
 categories          science
-license             MIT
+license             LGPL-2.1
 maintainers         {@ra1nb0w irh.it:rainbow} {michaelld @michaelld} openmaintainer
 
-description         Soapy SDR module for RTL-SDR
+description         Soapy SDR module for Pluto SDR
 long_description    ${description}
 
-github.setup        pothosware SoapyRTLSDR 0.3.0 soapy-rtlsdr-
-checksums           rmd160  88bb56f7842b9ce4de9f32fe1df0545c543a6724 \
-                    sha256  5fe2841548af43011381ef3da3f75be134245ccc215c12b0fea7f900760ce98f \
-                    size    14389
+github.setup        pothosware SoapyPlutoSDR 0.1.0 soapy-plutosdr-
+checksums           rmd160  537d48e31d9daeba8a92debc1a12e0078c4349e8 \
+                    sha256  b19cbdbac9f6da16a9a91fe90d4e000736294c20aa179a77048c2e93497679ec \
+                    size    18392
 revision            0
 
 depends_build-append \
@@ -24,7 +24,8 @@ depends_build-append \
 
 depends_lib-append \
     port:SoapySDR \
-    port:rtl-sdr
+    port:libiio \
+    port:libad9361-iio
 
 configure.args-append \
     -DCMAKE_BUILD_TYPE=Release

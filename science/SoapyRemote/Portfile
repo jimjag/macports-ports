@@ -7,24 +7,20 @@ PortGroup           cxx11 1.1
 
 platforms           darwin macosx
 categories          science
-license             MIT
+license             Boost-1
 maintainers         {@ra1nb0w irh.it:rainbow} {michaelld @michaelld} openmaintainer
 
-description         Soapy SDR module for RTL-SDR
+description         Soapy SDR module for use any Soapy SDR remotely
 long_description    ${description}
 
-github.setup        pothosware SoapyRTLSDR 0.3.0 soapy-rtlsdr-
-checksums           rmd160  88bb56f7842b9ce4de9f32fe1df0545c543a6724 \
-                    sha256  5fe2841548af43011381ef3da3f75be134245ccc215c12b0fea7f900760ce98f \
-                    size    14389
+github.setup        pothosware SoapyRemote 0.5.1 soapy-remote-
+checksums           rmd160  59cbec7102a4f5bf81351ac7e98d51580b34f4a4 \
+                    sha256  0561c03dd7cc6bda11dbfcfe4578541803955e2e801e5bbeeecfb19d026a683e \
+                    size    72656
 revision            0
 
-depends_build-append \
-    port:pkgconfig
-
 depends_lib-append \
-    port:SoapySDR \
-    port:rtl-sdr
+    port:SoapySDR
 
 configure.args-append \
     -DCMAKE_BUILD_TYPE=Release
