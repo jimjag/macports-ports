@@ -5,7 +5,7 @@ PortGroup           python 1.0
 
 name                py-wheel
 set real_name       wheel
-version             0.33.2
+version             0.33.4
 revision            0
 platforms           darwin
 license             MIT
@@ -18,9 +18,9 @@ homepage            https://bitbucket.org/pypa/wheel/
 master_sites        pypi:w/${real_name}
 distname            wheel-${version}
 
-checksums           rmd160  190a747424b1a385e4f109f74d539141f1b1de12 \
-                    sha256  2ef391896c1c6dce2e1f67ac2f371b41fdc2f46a90d3142ec3239419535df1ca \
-                    size    18789
+checksums           rmd160  5529c3a12040e3ffc3b63e61b0039ace866fa024 \
+                    sha256  62fcfa03d45b5b722539ccbc07b190e4bfff4bb9e3a4d470dd9f6a0981002565 \
+                    size    18781
 
 python.versions     27 35 36 37
 
