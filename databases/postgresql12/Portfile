@@ -6,9 +6,9 @@ PortGroup compiler_blacklist_versions 1.0
 PortGroup muniversal 1.0
 
 #remember to update the -doc and -server as well
-name                postgresql10
-version             10.8
-revision            1
+name                postgresql12
+version             12beta1
+revision            0
 
 categories          databases
 platforms           darwin
@@ -26,17 +26,17 @@ master_sites        http://ftp3.de.postgresql.org/pub/Mirrors/ftp.postgresql.org
             postgresql:source/v${version}/
 distname            postgresql-${version}
 
-checksums           rmd160  0536828acedd4e2786456a4d2fac510fabb2acf5 \
-                    sha256  b198c2aadf1d68308127a0f5b51dbe798958ffe60dd999134f6495c489afcd5d \
-                    size    18958913
+checksums           rmd160  aa895a075724306c8c38b5667b148ab6e7de71a9 \
+                    sha256  203e2d0151d75e3328a6b6b85eae88e50168ae27423b39787cea595365da9fad \
+                    size    20589423
 
 use_bzip2           yes
 
 # do not build man or html files (use postgresqlXY-doc instead)
 patchfiles-append   patch-no_doc.diff
 
-depends_lib         port:readline path:lib/libssl.dylib:openssl port:zlib port:libxml2 port:libxslt
-depends_build       port:bison
+depends_lib         port:readline path:lib/libssl.dylib:openssl port:zlib port:libxml2 port:libxslt port:icu
+depends_build       port:bison port:pkgconfig
 depends_run         port:postgresql_select
 
 worksrcdir          postgresql-${version}
@@ -60,7 +60,8 @@ configure.args      PG_SYSROOT=disabled \
                     --with-libxslt \
                     --with-gssapi \
                     --enable-thread-safety \
-                    --with-uuid=e2fs
+                    --with-uuid=e2fs \
+                    --with-icu
 
 configure.ldflags-append    -headerpad_max_install_names
 configure.universal_args-delete --disable-dependency-tracking
@@ -83,12 +84,13 @@ test.target         check
 
 # remember to change livecheck with first proper release
 livecheck.type      regex
-#livecheck.regex     (9\\.6\[.0-9\]*\[a-z\]+\[0-9\])
-livecheck.regex    (10\\.\[.0-9\]+)
+#livecheck.regex    (12\\.\[.0-9\]*\[a-z\]+\[0-9\])
+livecheck.regex    (12\[a-z\]+\[0-9\])
+#livecheck.regex    (12\\.\[.0-9\]+)
 livecheck.url       ${homepage}/ftp/source/
 
 post-destroot {
-    system "cd ${destroot}${prefix}/bin && ln -sf ${libdir}/bin/psql psql10"
+    system "cd ${destroot}${prefix}/bin && ln -sf ${libdir}/bin/psql psql12"
 
     reinplace -E "s#^CFLAGS =#CFLAGS +=#g" \
         ${destroot}${prefix}/lib/${name}/pgxs/src/Makefile.global
@@ -141,4 +143,10 @@ variant tcl description {add Tcl support} {
     depends_lib-append      port:tcl
     configure.args-append   --with-tcl --with-tclconfig=${prefix}/lib
     configure.env-append    TCLSH=${prefix}/bin/tclsh
+}
+
+variant llvm description {add support for JIT compilation} {
+    depends_lib-append      port:llvm-6.0
+    configure.args-append   --with-llvm
+    configure.env-append    LLVM_CONFIG=${prefix}/libexec/llvm-6.0/bin/llvm-config
 }
