@@ -22,14 +22,18 @@ long_description    Dovecot is an IMAP and POP3 server for Linux/UNIX-like \
                     it is written in C, it uses several coding techniques to \
                     avoid most of the common pitfalls.
 
-depends_build       port:gettext \
+depends_build-append \
+                    port:autoconf \
+                    port:gettext \
                     port:pandoc \
-                    port:pkgconfig
-depends_lib         port:libiconv \
-                    port:zlib \
+                    port:pkgconfig \
+                    port:wget
+
+depends_lib-append  port:bzip2 \
+                    port:libiconv \
+                    path:lib/libssl.dylib:openssl \
                     port:xz \
-                    port:bzip2 \
-                    path:lib/libssl.dylib:openssl
+                    port:zlib
 
 set default_internal_user   _dovecot
 set default_login_user      _dovenull
