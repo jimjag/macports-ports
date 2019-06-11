@@ -50,10 +50,8 @@ post-patch {
 
 conflicts_build     ${name} xcbuild
 
-if {[variant_isset universal]} {
-    # llvm-gcc-4.2: -E, -S, -save-temps and -M options are not allowed with multiple -arch flags
-    compiler.blacklist  *llvm-gcc-4.2
-}
+compiler.blacklist-append *gcc-3.* *gcc-4.* {clang < 300}
+compiler.fallback macports-clang-5.0 
 
 configure.args      --with-docs \
                     --without-emacs \
