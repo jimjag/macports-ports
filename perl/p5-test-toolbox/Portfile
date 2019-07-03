@@ -4,22 +4,19 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.26 5.28
-perl5.setup         Test-Refcount 0.10
+perl5.setup         Test-Toolbox 0.4
 license             {Artistic-1 GPL}
 maintainers         nomaintainer
-description         Test::Refcount - assert reference counts on objects
+description         Test::Toolbox - tools for testing
 long_description    ${description}
 
 platforms           darwin
 
-checksums           rmd160  19e9eda378380d0af9ad9595675295e4ee0955ce \
-                    sha256  0457c20a4956473d157c4faaff8814154bc93f6e2b543c2812a19ff8e3370eb2 \
-                    size    17218
+checksums           rmd160  79baa1a10c0e85a0f1224b26069adec60dc6b7e1 \
+                    sha256  4020b5c7f3a15ac9b187d05dfd9816b8030ec0d4a47ff8373f7633bb614ebdc3 \
+                    size    17713
 
 if {${perl5.major} != ""} {
-    depends_lib-append \
-                    port:p${perl5.major}-devel-mat
-
     perl5.use_module_build
     supported_archs noarch
 }
