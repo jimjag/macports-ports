@@ -5,7 +5,7 @@ PortGroup           github 1.0
 PortGroup           compiler_blacklist_versions 1.0
 
 github.setup        fontforge fontforge 20190801
-revision            0
+revision            1
 github.tarball_from releases
 
 categories          graphics fonts
@@ -50,6 +50,21 @@ depends_lib         path:lib/pkgconfig/cairo.pc:cairo \
 compiler.blacklist  {clang < 500} *gcc-4.2 gcc-4.0 gcc-3.3
 configure.cflags-append -std=gnu11
 
+# fix 32bit builds by masking an old Carbon call to GetTime
+patchfiles-append   patch-fontforge-carbon-gettime-namecollision.diff
+
+# use older noerr macros, and replace missing SRefCon definition
+if {${os.platform} eq "darwin" && ${os.major} <= 9} {
+    patchfiles-append \
+                patch-fontforge-startui-require-noerr-and-SRefCon-fix.diff \
+}
+
+# the date command on Tiger is too old for this port, use gnu coreutils dates instead
+platform darwin 8 {
+    depends_build-append port:coreutils
+    configure.env-append PATH=${prefix}/libexec/gnubin/:$env(PATH)
+}
+
 configure.args      --mandir=${prefix}/share/man \
                     --disable-python-scripting \
                     --disable-python-extension \
@@ -67,8 +82,9 @@ variant python37 description {Enable Python support (Python 3.7)} {
 }
 
 variant gui description {Enable GUI support} {
-    depends_lib-append      port:xorg-libXi
+    depends_lib-append      port:xorg-libXi port:gtk3
     configure.args-replace  --without-x --with-x
+    configure.args-append   --enable-gdk=yes
 }
 
 post-destroot {
@@ -80,14 +96,4 @@ macOS app bundles are available here:
 
     https://dl.bintray.com/fontforge/fontforge/
 "
-
-if {[variant_isset gui]} {
-    notes-append "
-To make the GUI work, you have to open a font when launching fontforge for the\
-first time, e.g.:
-
-    ${prefix}/bin/fontforge some-font-file.otf
-"
-}
-
-default_variants    +python37
+default_variants    +python37 +gui

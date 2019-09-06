@@ -29,18 +29,21 @@ depends_build-append \
                     port:pkgconfig \
                     port:help2man
 
-depends_lib         port:gettext \
+depends_lib-append \
+                    port:gettext \
                     port:libcddb \
                     port:libiconv \
                     port:ncurses \
                     port:popt
 
+# iso9660.c:376: error: #pragma GCC diagnostic not allowed inside functions
+compiler.blacklist  *gcc-4.* *gcc-3.*
 
 # Required to get a newer libtool that understands -stdlib.
 use_autoreconf          yes
 autoreconf.args-append  --force
 
-configure.args-append --disable-silent-rules \
+configure.args-append --disable-silent-rules
 
 # needed to regeneration version.texi at least during build
 configure.args-append --enable-maintainer-mode
