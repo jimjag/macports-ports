@@ -6,7 +6,7 @@ PortGroup           xcodeversion 1.0
 
 name                TeXShop4
 conflicts           TeXShop
-version             4.31
+version             4.38
 revision            0
 
 set major           [lindex [split ${version} .] 0]
@@ -31,9 +31,9 @@ set propername      TeXShop
 # TeXShop4 has frequent stealth updates, keep in sync with revision number
 #dist_subdir         TeXShop/${version}_${revision}
 
-checksums           rmd160  0867a5bf5dd587e585266330ee26b845f90a1473 \
-                    sha256  9a4c292b3104ff3a8e3ee83baeb625975ab22cebc395daaa76f42c1162384129 \
-                    size    143089893
+checksums           rmd160  45c5e3b6b84b0c4df34d4cdd606c427c029568c7 \
+                    sha256  e923893a5812635f3def8b301a2a7d1dd3bc30a28ad016d4ea05d106c41c39a7 \
+                    size    145013566
 
 minimum_xcodeversions   {13 6.2}
 

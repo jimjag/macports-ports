@@ -4,7 +4,7 @@ PortSystem          1.0
 PortGroup           perl5 1.0
 
 perl5.branches      5.26 5.28
-perl5.setup         DBD-Mock 1.46
+perl5.setup         DBD-Mock 1.49
 revision            0
 platforms           darwin
 maintainers         nomaintainer
@@ -15,9 +15,9 @@ description         DBD::Mock - Mock database driver for testing
 
 long_description    ${description}
 
-checksums           rmd160  da275afa1e5752f0d7e721581d312a24ffedd763 \
-                    sha256  10468904f0a5d073b3b6b26afd27856f93099233c5e67f82e25a1732d65f005c \
-                    size    63788
+checksums           rmd160  fe264d5fc266eb6dd6dded703dd54f5fb227f087 \
+                    sha256  3c88bd9322d3d1a215b0c8dad8b27f06885a063f8f47fb8747f6e86f8b9d7116 \
+                    size    69289
 
 if {${perl5.major} != ""} {
     depends_build-append \

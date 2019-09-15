@@ -3,11 +3,11 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/gohugoio/hugo 0.58.0 v
+go.setup            github.com/gohugoio/hugo 0.58.2 v
 revision            0
-checksums           rmd160  5a00b835524676f7c0dace85d4a33ea259d13c22 \
-                    sha256  4d10a2f9e6f0fa7d0c6a9ac20351bf06bcff6f615834452dd10efc33289e5075 \
-                    size    30046503
+checksums           rmd160  0a48598c1350bc828f95fa0ef313a7ba91c1f5c0 \
+                    sha256  772d817759c921b1df4a5204caf50dbef4a4081a531a64932563fa3bcad27ecf \
+                    size    30043910
 
 categories          www
 platforms           darwin
