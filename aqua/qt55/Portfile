@@ -152,7 +152,7 @@ array set modules {
         {"Qt Core" "Qt GUI" "Qt Network" "Qt SQL" "Qt Test" "Qt Widgets" "Qt Concurrent" "Qt D-Bus" "Qt OpenGL" "Qt Platform Headers" "Qt Print Support" "Qt XML"}
         ""
         "variant overrides: "
-        "revision 14"
+        "revision 15"
         "License: "
     }
     qtcanvas3d {
@@ -467,7 +467,7 @@ array set modules {
         {"Qt WebKit" "Qt WebKit Widgets"}
         "community support only (use Qt WebEngine)"
         "variant overrides: "
-        "revision 4"
+        "revision 5"
         "License: "
     }
     qtwebkit-examples {
@@ -756,6 +756,15 @@ foreach {module module_info} [array get modules] {
                     mkspecs/common/mac.conf \
                     mkspecs/features/mac/rez.prf
             }
+
+            # Qt assumes _bit_scan_reverse is not provided by Clang
+            # this assumption is incorrect for recent versions of Clang
+            #     see https://github.com/llvm/llvm-project/commit/e54093fcc0a651df14040a61fc8efdd338389afa
+            # see https://trac.macports.org/ticket/59364
+            patchfiles-append patch-qtbase-intel_intrinsics.diff
+
+            # see https://trac.macports.org/ticket/59312
+            use_xcode yes
 
             #-----------------------------------------------------------------------------
             # qtbase is used for:
@@ -1398,6 +1407,11 @@ foreach {module module_info} [array get modules] {
                 # See https://code.qt.io/cgit/qt/qt5.git/commit/?id=758d922716ebdedeaa6fa26369c8dbb9dff4bae4
                 if {[variant_isset examples]} {
                     depends_lib-append  port:${name}-qttools
+                }
+
+                # see https://trac.macports.org/ticket/59321
+                post-extract {
+                    move ${worksrcpath}/src/3rdparty/javascriptcore/VERSION ${worksrcpath}/src/3rdparty/javascriptcore/VERSION.txt
                 }
             }
         }

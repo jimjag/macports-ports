@@ -162,7 +162,7 @@ array set modules {
         {"Qt Core" "Qt GUI" "Qt Network" "Qt SQL" "Qt Test" "Qt Widgets" "Qt Concurrent" "Qt D-Bus" "Qt OpenGL" "Qt Platform Headers" "Qt Print Support" "Qt XML"}
         ""
         "variant overrides: "
-        "revision 2"
+        "revision 3"
         "License: "
     }
     qtcanvas3d {
@@ -312,7 +312,7 @@ array set modules {
         {"Qt Location" "Qt Positioning"}
         ""
         "variant overrides: "
-        "revision 1"
+        "revision 2"
         "License: "
     }
     qtmacextras {
@@ -612,7 +612,7 @@ array set modules {
         {"Qt WebKit" "Qt WebKit Widgets"}
         "community support only (use Qt WebEngine)"
         "variant overrides: "
-        "revision 1"
+        "revision 2"
         "License: "
     }
     qtwebkit-examples {
@@ -878,6 +878,13 @@ foreach {module module_info} [array get modules] {
                     "s|__MACPORTS_Rez__|[exec xcrun --find Rez]|g" \
                     mkspecs/common/mac.conf \
                     mkspecs/features/mac/rez.prf
+            }
+
+            # see https://trac.macports.org/ticket/59312
+            # avoid
+            #     Failed to resolve SDK path for 'macosx'
+            if {${os.major} <= 14} {
+                use_xcode yes
             }
 
             #-----------------------------------------------------------------------------
