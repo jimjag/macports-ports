@@ -3,10 +3,10 @@
 PortSystem          1.0
 PortGroup           obsolete 1.0
 
-name                py-zopehookable
-replaced_by         py-zope-hookable
-version             5.0.0
-categories-append   zope
-license             ZPL-2.1
+name                KeePassXC-devel
+categories          security aqua
+version             20191026
+revision            1
+replaced_by         KeePassXC
 
-# remove after 2020-11-13
+# Remove after 2020-11-13
