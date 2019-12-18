@@ -1,11 +1,14 @@
---- CMakeLists.txt.orig	2019-05-07 13:58:35.000000000 -0700
-+++ CMakeLists.txt	2019-06-08 03:00:18.000000000 -0700
-@@ -177,7 +177,7 @@
-   set(MINIMUM_ZLIB_VERSION 1.2.7)
-   set(MINIMUM_TBB_VERSION 4.4)
+--- openvdb/python/CMakeLists.txt.orig	2019-12-16 22:50:43.000000000 -0700
++++ openvdb/python/CMakeLists.txt	2019-12-16 22:51:32.000000000 -0700
+@@ -104,9 +104,9 @@
+ else()
+   # CMake >= 3.14
+   if(USE_NUMPY)
+-    find_package(Python QUIET REQUIRED COMPONENTS Interpreter Development NumPy)
++    find_package(Python __MACPORTS_PYTHON_VERSION__ EXACT QUIET REQUIRED COMPONENTS Interpreter Development NumPy)
+   else()
+-    find_package(Python QUIET REQUIRED COMPONENTS Interpreter Development)
++    find_package(Python __MACPORTS_PYTHON_VERSION__ EXACT QUIET REQUIRED COMPONENTS Interpreter Development)
+ endif()
  
--  set(MINIMUM_PYTHON_VERSION 2.7)
-+  set(MINIMUM_PYTHON_VERSION __MACPORTS_PYTHON_VERSION__)
-   set(MINIMUM_NUMPY_VERSION 1.9.2)
- 
-   set(MINIMUM_CPPUNIT_VERSION 1.10)
+   OPENVDB_CHECK_PYTHON_VERSION(${Python_VERSION} ${Python_EXECUTABLE})
