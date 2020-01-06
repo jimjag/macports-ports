@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/derailed/k9s 0.10.4
+go.setup            github.com/derailed/k9s 0.11.0
 
 categories          sysutils
 maintainers         {breun.nl:nils @breun} openmaintainer
@@ -19,9 +19,9 @@ platforms           darwin
 supported_archs     x86_64
 license             Apache-2
 
-checksums           rmd160  87dabfd9c37af055ca77a93a4f19f205dd80bd39 \
-                    sha256  43002d8bc6f42c577136ab9f22ab465956dcbdaa04806c72d80cc37bff9ab0a3 \
-                    size    786791
+checksums           rmd160  e082ea6f2598b635c470d413055e01ea3df8c2b0 \
+                    sha256  f86788080f4273e06fd826e7e8b9f96a022be5f0d503eb90b1983f283cf11f6d \
+                    size    837943
 
 # Reproduce the "build" target from the upstream Makefile
 set go_ldflags      "-w -X ${go.package}/cmd.version=${version} \
