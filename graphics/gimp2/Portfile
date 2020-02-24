@@ -6,8 +6,7 @@ PortGroup           compiler_blacklist_versions 1.0
 name                gimp2
 conflicts           gimp2-devel gimp3-devel
 # please remember to update the gimp metapackage to match
-version             2.10.14
-revision            3
+version             2.10.18
 set branch          [join [lrange [split ${version} .] 0 1] .]
 license             GPL-3+
 categories          graphics
@@ -27,9 +26,9 @@ distname            gimp-${version}
 
 use_bzip2           yes
 
-checksums           rmd160  5d25b12b25887453f750f3067d1551d49ebbfebe \
-                    sha256  df9b0f11c2078eea1de3ebc66529a5d3854c5e28636cd25a8dd077bd9d6ddc54 \
-                    size    32786424
+checksums           rmd160  52045f0f163a74ef154ac936f637be4a999bbbcf \
+                    sha256  65bfe111e8eebffd3dde3016ccb507f9948d2663d9497cb438d9bb609e11d716 \
+                    size    32946467
 
 set perl_version    5.28
 
